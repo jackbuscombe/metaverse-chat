@@ -41,7 +41,7 @@ function SendMessage({ endOfMessagesRef }) {
 	};
 
 	return (
-		<form className="flex w-11/12 fixed bottom-10 bg-black opacity-80 px-6 py-4 max-w-2xl shadow-xl rounded-full border-4 border-blue-400">
+		<form className="flex w-11/12 fixed bottom-10 bg-black px-6 py-4 max-w-2xl shadow-xl rounded-full border-4 border-blue-400">
 			<input ref={messageRef} className="flex-grow pr-5 outline-none bg-transparent text-white placeholder:gray-500 border-none" placeholder={`Enter a Message ${user.getUsername()}`} type="text" />
 			<button onClick={sendMessage} type="submit" className="font-bold text-pink-500">
 				Send

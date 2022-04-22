@@ -1,5 +1,5 @@
-import { ByMoralis, useMoralis, useMoralisQuery } from "react-moralis";
-import { useRef } from "react";
+import { useMoralis, useMoralisQuery } from "react-moralis";
+import { useRef, useEffect } from "react";
 import SendMessage from "./SendMessage";
 import Message from "./Message";
 
@@ -11,13 +11,11 @@ function Messages() {
 	const endOfMessagesRef = useRef();
 	const { data, loading, error } = useMoralisQuery("Messages", (query) => query.ascending("createdAt").greaterThan("createdAt", new Date(Date.now() - 1000 * 60 * MINS_DURATION)), [], { live: true });
 
-	console.log(data);
+	useEffect(() => {
+		endOfMessagesRef.current.scrollIntoView({ behavior: "smooth" });
+	}, [data]);
 	return (
-		<div className="pb-56">
-			<div className="my-5">
-				<ByMoralis variant="dark" style={{ marginLeft: "auto", marginRight: "auto" }} />
-			</div>
-
+		<div className="pb-32">
 			<div className="space-y-10 p-4">
 				{data.map((message) => (
 					<Message key={message.id} message={message} />
